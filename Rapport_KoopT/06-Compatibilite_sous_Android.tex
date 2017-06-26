@@ -1,0 +1,26 @@
+\chapter{Compatibilité sous Android}
+\label{sec:Compatibilité sous Android}
+
+\section*{Introduction}
+
+Toutes les icônes et les images de l’application KOOPT sont créées sous forme d'images vectorielles qui sont compatibles qu’avec les versions Android supérieure ou égale à 5.0 et qui ne sont pas compatibles avec les versions inférieures.
+Ma mission était de gérer la compatibilité de KOOPT avec toutes les versions Android, pour cela on a ajouté des wrappers pour les images vectorielles pour qu’elles puissent être affichées sur tous les smartphones Android sur n’importe qu’elle version.
+
+\addcontentsline{toc}{section}{Introduction.}
+
+\section{Images Vectorielles}
+
+L’ajout d’images à un projet android se fait via les drawables. Pour des raisons de performance, en fonction de la taille de l’écran nous devons fournir une image possédant une plus ou moins grand résolution. C’est pour cela qu’une même image sera ajoutée dans plusieurs tailles dans les dossiers mdpi, hdpi, xhdpi, etc. Ce qui augmente rapidement le poids de l’application.
+Cette contrainte est souvent mal perçue par les développeurs, car elle demande un effort supplémentaire entre l’export de la maquette et l’ajout au projet, et souvent se solde par l’ajout d’images de mauvaise résolution ou d’une seule image dans les drawable.
+ 
+C’est pour cela il existe un type d’image résistant à la résolution, c’est à dire pouvant être affichées sans perte de qualité peut importe la résolution à laquelle seront affichées, elles sont appelées images vectorielles.
+
+Elles ne sont pas composées de pixel contrairement aux png ou jpeg, mais de définitions de formes, associées à des couleurs. Ce qui a pour résultat de re-calculer la forme lorsque l’on change la résolution de l’image au lieu de rasteriser celle-ci.
+
+Depuis android 5.0, il est maintenant possible d’utiliser ces images dans les projets, en utilisant les vector drawables.
+Pour créer une image vectorielle, il suffit d’écrire les détails de la forme au sein d’une balise <vector> dans un fichier drawable xml.\cite{imagevectorielle}
+
+\section{Solution des Wrapper}
+
+Les Wrapper sont des fichiers XML qui encapsulent les images vectorielles afin qu’elles puissent être compatibles avec toutes les versions android; c’est la technique qu’on a adapté pour la problématique de compatibilité en évitant d’ajouter les images en  plusieurs tailles dans les différents  dossiers Drawable  mdpi, hdpi, xhdpi, etc.
+ 
